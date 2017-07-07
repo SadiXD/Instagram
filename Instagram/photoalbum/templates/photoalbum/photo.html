@@ -1,0 +1,10 @@
+
+
+{{ photo.image }}
+{% for comment in photo.comments.all %}
+{{ comment }}
+{% endfor %}
+<form action="comment_valid" method="POST">
+    {{ form }}
+
+</form>
