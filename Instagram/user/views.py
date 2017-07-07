@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import UserLoginForm, UserCreateForm
+from photoalbum.models import Photo
 
 
 class UserLoginView(View):
@@ -21,7 +22,7 @@ class UserLoginView(View):
         if form.is_valid():
             user = form.cleaned_data['user']
             login(request, user)
-            return redirect('/add_user/')
+            return redirect('/instagram/')
         else:
             return render(request, "user/login_user.html", {'form': form})
 
@@ -37,3 +38,11 @@ class UserCreateView(CreateView):
     template_name = "user/user_form.html"
     success_url = reverse_lazy("login-user")
 
+
+class InstagramView(View):
+    def get(self, request):
+        photo_list = Photo.objects.all()
+        ctx = {
+            "photo_list": photo_list
+        }
+        return render(request, 'user/instagram.html', ctx)
