@@ -123,8 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
-MEDIA_URL = '/media/'
+AUTH_USER_MODEL = 'user.InstagramUser'
