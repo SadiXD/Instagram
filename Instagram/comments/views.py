@@ -1,15 +1,17 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views import View
 from .forms import CommentForm
-from ..photoalbum.forms import Photo
+from photoalbum.models import Photo
 
 
 class CommentValidation(View):
-    def post(self, request):
+    def post(self, request, id):
         form = CommentForm(request.POST)
+        photo = Photo.objects.get(id=id)
         if form.is_valid():
             form.save(request)
-            return redirect('photo_detail')
+            form = CommentForm()
+            return redirect('/photo/{}'.format(photo.id))
         else:
             photo = Photo.objects.get(id=request.POST['photo'])
             return render(request, 'photoalbum/photo.html', {'photo': photo, 'form': form})

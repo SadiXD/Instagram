@@ -5,5 +5,5 @@ from .views import CommentValidation
 app_name = 'comment'
 
 urlpatterns = [
-    url(r'^$', CommentValidation.as_view(), name='comment_valid'),
+    url(r'^photo/(?P<id>(\d)+)/comment_valid$', CommentValidation.as_view(), name='comment_valid'),
 ]

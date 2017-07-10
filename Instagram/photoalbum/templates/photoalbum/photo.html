@@ -1,10 +1,14 @@
+{% extends 'user/base.html' %}
 
-
-{{ photo.image }}
+{% block content %}
+<img width=500px src="{{ MEDIA_URL }}{{ photo.image }}"/><br />
+<strong>{{ photo.user.username }}</strong> ~ {{ photo.description }}<br /><br />
 {% for comment in photo.comments.all %}
-{{ comment }}
-{% endfor %}
-<form action="comment_valid" method="POST">
+<p><strong>{{ comment.user.username }}</strong> ~ {{ comment.content }}</p>
+{% endfor %}<br />
+<form action="comment_valid" method="POST">{% csrf_token %}
     {{ form }}
-
+    <input type="submit" value="Dodaj komentarz"/>
 </form>
+
+{% endblock %}

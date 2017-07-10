@@ -7,6 +7,7 @@ class PhotoAddForm(ModelForm):
         model = Photo
         fields = ['image', 'description']
 
-    def save(self, request, commit=True, *args, **kwargs):
+    def save(self, request, *args, **kwargs):
         self.instance.user = request.user
-        super(PhotoAddForm, self).save(*args, **kwargs)
+        return super(PhotoAddForm, self).save(*args, **kwargs)
+

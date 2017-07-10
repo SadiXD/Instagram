@@ -21,7 +21,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^", include("user.urls"))
-]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^', include("user.urls")),
+    url(r'^', include("photoalbum.urls")),
+    url(r'^', include("comments.urls"))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

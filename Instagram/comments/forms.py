@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from .models import Comment
 
+
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
@@ -8,9 +9,9 @@ class CommentForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
-        self.fields['photo'].widet.attrs['hidden'] = True
+        self.fields['photo'].widget.attrs['hidden'] = True
 
-    def save(self, request, commit=True, *args, **kwargs,):
+    def save(self, request, commit=True, *args, **kwargs):
         self.instance.user = request.user
         super(CommentForm, self).save(*args, **kwargs)
 

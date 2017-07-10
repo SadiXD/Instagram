@@ -1,0 +1,17 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<h2>Zdjęcia {{ user.username }}:</h2>
+<ul>
+    {% for photo in photo_list %}
+    <p><a href="/photo/{{ photo.id }}/"><img width=500px src="{{ MEDIA_URL }}{{ photo.image }}"/></a><br />
+        <strong>{{ photo.user.username }}</strong> ~ {{ photo.description }}<br />
+        {{ photo.added }}</p><br />
+        {% for comment in photo.comments.all %}
+        <p><strong>{{ comment.user.username }}</strong> ~ {{ comment.content }}</p>
+{% endfor %}<br />
+    {% endfor %}
+</ul>
+
+{% endblock %}
