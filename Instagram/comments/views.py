@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views import View
 from .forms import CommentForm
 from photoalbum.models import Photo
 
 
-class CommentValidation(View):
+class CommentValidation(LoginRequiredMixin, View):
     def post(self, request, id):
         form = CommentForm(request.POST)
         photo = Photo.objects.get(id=id)

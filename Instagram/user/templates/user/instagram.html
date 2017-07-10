@@ -1,12 +1,17 @@
 {% extends 'user/base.html' %}
 
 {% block content %}
-<h2>Wszystkie zdjęcia:</h2>
-<ul>
+    <h1>Welcome to "Instagram"!</h1><br />
+{% if request.user.is_authenticated %}
+    <h2>All pictures:</h2>
+    <ul>
     {% for photo in photo_list %}
-    <p><a href="/photo/{{ photo.id }}/"><img width=500px src="{{ MEDIA_URL }}{{ photo.image }}"/></a><br />
+        <p><a href="/photo/{{ photo.id }}/"><img width=500px src="{{ MEDIA_URL }}{{ photo.image }}"/></a><br />
         <strong>{{ photo.user.username }}</strong> ~ {{ photo.description }}<br />
         {{ photo.added }}</p><br />
     {% endfor %}
+{% else %}
+    <p>To see more, you must be a registered user.</p>
+{% endif %}
 </ul>
 {% endblock %}
