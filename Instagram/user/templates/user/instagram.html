@@ -1,0 +1,10 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<h2>Wszystkie zdjęcia:</h2>
+<ul>
+    {% for photo in photo_list %}
+    <p><img src="{{ MEDIA_URL }}{{ photo.image }}"/> <br> Photograph: {{ photo.user.username }}</p>
+    {% endfor %}
+</ul>
+{% endblock %}

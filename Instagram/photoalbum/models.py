@@ -1,11 +1,11 @@
 from django.db import models
 from datetime import datetime
-from Instagram.Instagram.settings import AUTH_USER
+from django.conf import settings
 
 
 class Photo(models.Model):
-    image = models.ImageField(upload_to='photos', verbose_name='Photo')
-    user = models.ForeignKey(AUTH_USER, related_name='photos')
+    image = models.ImageField(upload_to='media', verbose_name='Photo')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='photos')
     description = models.CharField(max_length=243, null=True, blank=True)
     added = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

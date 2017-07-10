@@ -5,7 +5,19 @@
     <title>Title</title>
 </head>
 <body>
+{% block content %}
 
+{% endblock %}
 
 </body>
+<footer>
+{% if request.user.is_authenticated %}
+    <a href="/logout">LOGOUT {{request.user.username}}</a><br>
+    <a href="/add_photo">ADD YOUR PHOTO</a>
+    {% else %}
+    <a href="/login">LOGIN</a> <br>
+    <a href="/add_user">REGISTER</a><br>
+    <a href="add_photo">ADD YOUR PHOTO</a>
+    {% endif %}
+</footer>
 </html>
